@@ -1,0 +1,4 @@
+{
+  "adminLink": "[href='/web/index.php/admin/viewAdminModule'] > .oxd-text",
+  "deleteAdminButton": ".oxd-table-body > div:nth-of-type(1) button:nth-of-type(1) > i:nth-of-type(1)"
+}

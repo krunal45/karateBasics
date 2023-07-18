@@ -1,0 +1,5 @@
+{
+  "userNameField": "input[name=\\'username\\']",
+  "passwordField": "input[type=\\'password\\']",
+  "loginButtonField": "//button[@type=\\'submit\\']"
+}
