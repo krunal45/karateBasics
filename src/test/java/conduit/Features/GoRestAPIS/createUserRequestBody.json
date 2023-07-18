@@ -1,0 +1,6 @@
+{
+  "name": "#(randomName)",
+  "gender": "#(gender)",
+  "email": "#(randomEmail)",
+  "status": "#(status)"
+}
