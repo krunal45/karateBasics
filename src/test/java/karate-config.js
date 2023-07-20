@@ -7,6 +7,7 @@ function fn() {
   var config = { // base config JSON
     webURL: 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
     apiBaseURLForPostFeature: 'https://jsonplaceholder.typicode.com',
+    animalRestAPI: 'https://cat-fact.herokuapp.com/',
     apiBaseURLForReqresFeature: 'https://reqres.in/',
     conduitAPIEndpoint: 'https://api.realworld.io/api',
     restFulBooker: 'https://restful-booker.herokuapp.com',
