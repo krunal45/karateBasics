@@ -11,8 +11,8 @@ function fn() {
     apiBaseURLForReqresFeature: 'https://reqres.in/',
     conduitAPIEndpoint: 'https://api.realworld.io/api',
     restFulBooker: 'https://restful-booker.herokuapp.com',
-    goRest: 'https://gorest.co.in/',
-    authToken: 'Bearer 18c9caaf7a49d07943da5306092cdb8c759e03df2e98c282c2b4ab03177ecc8d'
+    goRest: 'https://gorest.co.in/public/v2/users',
+    authToken: 'Bearer 69d45aa51f3c6b46d10b725570c4828036880ce50b0e5394d452d9b2ba7e4d1c'
     };
   if (env == 'stage') {
 //     over-ride only those that need to be
