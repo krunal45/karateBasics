@@ -5,6 +5,11 @@ import com.intuit.karate.junit5.Karate;
 public class CreateResourceRunner {
     @Karate.Test
     Karate testCreateResource() {
-        return Karate.run("SimpleBooksAPI").relativeTo(getClass());
+        return Karate.run("CreateResource").relativeTo(getClass());
+    }
+
+    @Karate.Test
+    Karate testGoRestAPI() {
+        return Karate.run("GoRestAPI").tags("@createUser,@listUsers").relativeTo(getClass());
     }
 }

@@ -10,12 +10,12 @@ Feature:
     {
     "name": "morpheus",
     "job": "leader",
-    "id": "682",
-    "createdAt": "2025-04-19T02:57:29.389Z"
+    "id": "#present",
+    "createdAt": "#present"
     }
      """
 
-@skip
+@ignore
   Scenario:Validate specific field value
     Given url 'https://reqres.in/api/users'
     And request {"name": "morpheus","job": "leader"}
