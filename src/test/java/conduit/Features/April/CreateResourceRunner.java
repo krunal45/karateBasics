@@ -5,7 +5,7 @@ import com.intuit.karate.junit5.Karate;
 public class CreateResourceRunner {
     @Karate.Test
     Karate testCreateResource() {
-        return Karate.run("CreateResource").relativeTo(getClass());
+        return Karate.run().relativeTo(getClass());
     }
 
     @Karate.Test
