@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    private static String connectionURL = "jdbc:sqlite:/Users/krunalb/Library/DBeaverData/workspace6/.metadata/sample-database-sqlite-1/Chinook.db";
+    private static final String connectionURL = "jdbc:sqlite:/Users/krunalb/Library/DBeaverData/workspace6/.metadata/sample-database-sqlite-1/Chinook.db";
 
     public static void addNewEmployee(int empID, String lastName, String firstName, String jobTitle) {
         try (Connection connection = DriverManager.getConnection(connectionURL)) {

@@ -20,7 +20,7 @@ public class postAppTestRunner {
     Results testSample() {
         Results results = Karate.run("conduit/Features/posts/getCreatedPosts.feature").outputCucumberJson(true).parallel(5);
         generateReport(results.getReportDir());
-        assertEquals(results.getFailCount() == 0, true, results.getErrorMessages());
+        assertTrue(results.getFailCount() == 0, results.getErrorMessages());
         return results;
     }
 
