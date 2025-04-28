@@ -1,30 +1,24 @@
 Feature:Create Post
   Background: Generate Token
-    Given url 'https://conduit-api.bondaracademy.com'
-    Given path 'api/users/login'
-    Given request read('conduitAppLoginData.json')
-    When method post
-    Then status 200
-    * def token = response.user.token
+    Given url conduitAPIEndpoint
 
+  @createArticle
   Scenario:Create Article
-    Given url 'https://conduit-api.bondaracademy.com'
     Given path 'api/articles'
     * def requestBody =
-    """
-    {
-      "article": {
-        "title": "Central Usability Executive6",
-        "description": "Test",
-        "body": "Test",
-        "tagList": [
-          "Chief Directives Supervisor4"
-        ]
+      """
+      {
+        "article": {
+          "title": "Central Usability Executive8",
+          "description": "Test",
+          "body": "Test",
+          "tagList": [
+            "Chief Directives Supervisor4"
+          ]
+        }
       }
-    }
-    """
+      """
     Given request requestBody
-    Given header Authorization = 'Token ' + token
     When method post
     Then status 201
     And match response.article.slug contains 'Central-Usability-Executive6'
@@ -33,14 +27,14 @@ Feature:Create Post
     And match response.article.tagList contains requestBody.article.tagList[0]
     And match response.article.author.username == 'krunal'
 
+  @createAndDeleteArticle
   Scenario: Create & Delete Article
-    Given url 'https://conduit-api.bondaracademy.com'
     Given path 'api/articles'
     * def requestBody =
       """
       {
         "article": {
-          "title": "Delete Article",
+          "title": "Delete Article1",
           "description": "Test",
           "body": "Test",
           "tagList": [
@@ -50,14 +44,24 @@ Feature:Create Post
       }
       """
     Given request requestBody
-    Given header Authorization = 'Token ' + token
     When method post
     Then status 201
     * def slug = response.article.slug
-#    Checking if article got created
-  Given url 'https://conduit-api.bondaracademy.com'
+    #    Checking if article got created
+    Given url conduitAPIEndpoint
+    Given params {limit:2,offset:0}
     Given path 'api/articles'
     When method get
     Then status 200
     And match response.articles[0].title == requestBody.article.title
-#    Delete Article
+    #    Delete Article
+    Given url conduitAPIEndpoint
+    Given path 'api/articles',slug
+    When method 'Delete'
+    Then status 200
+    #    Make another Get call to verify if article actually got deleted.
+    Given url conduitAPIEndpoint
+    Given path 'api/articles'
+    When method get
+    Then status 200
+    And match response.articles[0].title != requestBody.article.title
