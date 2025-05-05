@@ -27,7 +27,12 @@ Feature: Tests for the home Page
     And match response.articles[0].slug contains 'Bondar'
     And match response.articles[0].tagList contains ['QA Skills']
     And match response.articles[0].tagList contains any ['QA Skills','AB']
-    And match response.articles[*].favoritesCount contains 626
+    And match response.articles[*].favoritesCount contains 635
     And match response == {"articles":"#array","articlesCount":10}
     And match response..username contains 'Artem Bondar'
     And match each response..following == false
+    And match response.articlesCount == '#number'
+    And match response.articles == '#[2]'
+    And match response.articles[0].slug == '#string'
+    And match each response..following == '#boolean'
+    And match each response..bio == '##string'

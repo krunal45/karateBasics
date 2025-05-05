@@ -1,27 +1,18 @@
 Feature:Create Post
   Background: Generate Token
     Given url conduitAPIEndpoint
+    * def requestBody = read('classpath:conduitApp/Json/createArticle.json')
+    * def dataGenerator = Java.type('helpers.DataGenerator')
+    * set requestBody.article.title = dataGenerator.getNewArticle().title
+    * set requestBody.article.description = dataGenerator.getNewArticle().description
+    * set requestBody.article.body = dataGenerator.getNewArticle().body
 
   @createArticle
   Scenario:Create Article
     Given path 'api/articles'
-    * def requestBody =
-      """
-      {
-        "article": {
-          "title": "Central Usability Executive8",
-          "description": "Test",
-          "body": "Test",
-          "tagList": [
-            "Chief Directives Supervisor4"
-          ]
-        }
-      }
-      """
     Given request requestBody
     When method post
     Then status 201
-    And match response.article.slug contains 'Central-Usability-Executive6'
     And match response.article.title == requestBody.article.title
     And match response.article.description == requestBody.article.description
     And match response.article.tagList contains requestBody.article.tagList[0]

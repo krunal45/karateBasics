@@ -4,6 +4,7 @@ import com.intuit.karate.Results;
 import com.intuit.karate.Runner;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import helpers.DataGenerator;
 
 class ConduitTest {
 
@@ -27,7 +28,13 @@ class ConduitTest {
 
     @Test
     void signUpFeature() {
-        Results results = Runner.path("classpath:conduitApp/features/SignUp.feature").tags().parallel(1);
+        Results results = Runner.path("classpath:conduitApp/features/SignUp.feature").tags("@test").parallel(1);
+        assertEquals(0, results.getFailCount(), results.getErrorMessages());
+    }
+
+    @Test
+    void homeWorkFeature(){
+        Results results = Runner.path("classpath:conduitApp/features/HomeWork.feature").tags("@test2").parallel(1);
         assertEquals(0, results.getFailCount(), results.getErrorMessages());
     }
 }

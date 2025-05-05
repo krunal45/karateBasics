@@ -5,6 +5,10 @@ import net.minidev.json.JSONObject;
 
 public class DataGenerator {
 
+    public DataGenerator(){
+
+    }
+
     public static Integer getRandomSalary() {
         Faker faker = new Faker();
         return faker.random().nextInt(1000, 3000);

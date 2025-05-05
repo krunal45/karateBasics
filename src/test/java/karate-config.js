@@ -20,8 +20,8 @@ config.password = 'Test@123'
   } else if (env == 'e2e') {
     config.someUrlBase = 'https://e2e-host/v1/auth';
   }
-//  var accessToken = karate.callSingle('classpath:helpers/createToken.feature',config).token
-//  karate.configure('headers',{Authorization:'Token '+accessToken})
+  var accessToken = karate.callSingle('classpath:helpers/createToken.feature',config).token
+  karate.configure('headers',{Authorization:'Token '+accessToken})
 
   karate.configure('logPrettyRequest',true)
   karate.configure('logPrettyResponse',true)
