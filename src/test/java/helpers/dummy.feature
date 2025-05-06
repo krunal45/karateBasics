@@ -1,3 +1,6 @@
 Feature:dummy
 
-  Scenario:
+  Scenario:Dummy
+    * def dataGenerator = Java.type('helpers.DataGenerator')
+    * def username = dataGenerator.getRandomName()
+    * print username

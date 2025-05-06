@@ -15,7 +15,7 @@ Feature: Tests for the home Page
     And match response.tags == '#array'
     And match each response.tags == '#string'
 
-  @test
+  @test @ignore
   Scenario: Get all articles
     Given path 'api/articles'
     Given params {limit:2,offset:0}
@@ -36,3 +36,38 @@ Feature: Tests for the home Page
     And match response.articles[0].slug == '#string'
     And match each response..following == '#boolean'
     And match each response..bio == '##string'
+
+  @test @ignore
+  Scenario: Conditional Logic
+    Given path 'api/articles'
+    Given params {limit:2,offset:0}
+    When method Get
+    Then status 200
+    * def favouritesCount = response.articles[0].favoritesCount
+    * def article = response.articles[0]
+    #   * if (favouritesCount == 0) karate.call('helpers/AddLikes.feature',article)
+    * def likesCount = favouritesCount == 0 ? karate.call('helpers/AddLikes.feature',article).likesCount : favouritesCount
+
+    Given path 'api/articles'
+    Given params {limit:2,offset:0}
+    When method Get
+    Then status 200
+    And match response.articles[0].favoritesCount == likesCount
+
+  @test @ignore
+  Scenario: Retry Logic
+    * configure retry = {count:10,interval:5000}
+    Given path 'api/articles'
+    Given params {limit:2,offset:0}
+    And retry until response.articles[0].favoritesCount == 1
+    When method Get
+    Then status 200
+
+  @test
+  Scenario: Sleep Logic
+    * def sleep = function(pause){ java.lang.Thread.sleep(pause) }
+    Given path 'api/articles'
+    Given params {limit:2,offset:0}
+    When method Get
+    * eval sleep(2000)
+    Then status 200
