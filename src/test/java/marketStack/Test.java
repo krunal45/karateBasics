@@ -1,11 +1,10 @@
-package GoRestApp.Features;
+package marketStack;
 
 import com.intuit.karate.Results;
 import com.intuit.karate.Runner;
 import net.masterthought.cucumber.Configuration;
 import net.masterthought.cucumber.ReportBuilder;
 import org.apache.commons.io.FileUtils;
-import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,11 +13,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class GoRestTest {
+class Test {
 
-    @Test
+    @org.junit.jupiter.api.Test
     void testParallel(){
-        Results results = Runner.path("classpath:GoRestApp").tags("@deleteUser").outputCucumberJson(true).parallel(1);
+        Results results = Runner.path("classpath:marketStack").tags("@test").outputCucumberJson(true).parallel(1);
         generateReport(results.getReportDir());
         assertEquals(0, results.getFailCount(), results.getErrorMessages());
     }

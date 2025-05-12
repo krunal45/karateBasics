@@ -12,6 +12,7 @@ function fn() {
     conduitAPIEndpoint: 'https://conduit-api.bondaracademy.com',
     restFulBooker: 'https://restful-booker.herokuapp.com',
     goRest: 'https://gorest.co.in',
+    marketStack: 'https://api.marketstack.com',
     authToken: 'Bearer 3345dbb24f1d49db4a482b6eeb11ae938320b54a6fa505903863fca4befef311'
     };
   if (env == 'dev') {
@@ -21,9 +22,8 @@ config.password = 'Test@123'
     config.someUrlBase = 'https://e2e-host/v1/auth';
   }
 //  var accessToken = karate.callSingle('classpath:helpers/createToken.feature',config).token
-  karate.configure('headers',{Authorization:config.authToken})
-karate.configure('url',config.goRest)
-
+//  karate.configure('headers',{Authorization:config.authToken})
+  karate.configure('url',config.marketStack)
   karate.configure('logPrettyRequest',true)
   karate.configure('logPrettyResponse',true)
 
